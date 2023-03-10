@@ -12,10 +12,10 @@ public class VectorClassifier extends AbstractCategorizedTrainableClassifier {
     public static double DEFAULT_VECTORCLASSIFIER_CUTOFF = 0.80d;
     
     
-    private int numTermsInVector = 25;
-    private ITokenizer tokenizer;
-    private IStopWordProvider stopWordsProvider;
-    private TermVectorStorage storage;    
+    protected int numTermsInVector = 25;
+    protected ITokenizer tokenizer;
+    protected IStopWordProvider stopWordsProvider;
+    protected TermVectorStorage storage;
     
     public VectorClassifier() {
         tokenizer = new DefaultTokenizer();
@@ -29,7 +29,14 @@ public class VectorClassifier extends AbstractCategorizedTrainableClassifier {
         this();
         this.storage = storage;
     }
-    
+    public VectorClassifier(TermVectorStorage storage, ITokenizer tokenizer, IStopWordProvider stopWordsProvider,
+                            int numTermsInVector) {
+        this();
+        this.storage = storage;
+        this.tokenizer = tokenizer;
+        this.numTermsInVector = numTermsInVector;
+        this.stopWordsProvider = stopWordsProvider;
+    }
     /**
      * @see net.sf.classifier4J.ICategorisedClassifier#classify(String, String)
      */
